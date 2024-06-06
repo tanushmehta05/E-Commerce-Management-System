@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Customer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Support Customer Management</h1>
+        <form action="/support_customer" method="POST">
+            <label for="customer_id">Customer ID:</label>
+            <input type="text" id="customer_id" name="customer_id" required><br>
+
+            <label for="ticket_date">Ticket Date:</label>
+            <input type="date" id="ticket_date" name="ticket_date" required><br>
+
+            <label for="ticket_type">Ticket Type:</label>
+            <input type="text" id="ticket_type" name="ticket_type" required><br>
+
+            <label for="issue_description">Issue Description:</label>
+            <textarea id="issue_description" name="issue_description" required></textarea><br>
+
+            <label for="resolution">Resolution:</label>
+            <textarea id="resolution" name="resolution"></textarea><br>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="Open">Open</option>
+                <option value="Closed">Closed</option>
+                <option value="In Progress">In Progress</option>
+            </select><br>
+
+            <label for="assigned_to">Assigned To:</label>
+            <input type="text" id="assigned_to" name="assigned_to"><br>
+
+            <label for="priority">Priority:</label>
+            <select id="priority" name="priority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select><br>
+
+            <label for="due_date">Due Date:</label>
+            <input type="date" id="due_date" name="due_date"><br>
+
+            <button type="submit">Add Ticket</button>
+        </form>
+
+        <hr>
+
+        <h2>Support Tickets</h2>
+        <table border="1">
+            <tr>
+                <th>Customer ID</th>
+                <th>Ticket Date</th>
+                <th>Ticket Type</th>
+                <th>Issue Description</th>
+                <th>Resolution</th>
+                <th>Status</th>
+                <th>Assigned To</th>
+                <th>Priority</th>
+                <th>Due Date</th>
+            </tr>
+            {% for ticket in support_tickets %}
+            <tr>
+                <td>{{ ticket.customer_id }}</td>
+                <td>{{ ticket.ticket_date }}</td>
+                <td>{{ ticket.ticket_type }}</td>
+                <td>{{ ticket.issue_description }}</td>
+                <td>{{ ticket.resolution }}</td>
+                <td>{{ ticket.status }}</td>
+                <td>{{ ticket.assigned_to }}</td>
+                <td>{{ ticket.priority }}</td>
+                <td>{{ ticket.due_date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

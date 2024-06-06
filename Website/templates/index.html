@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBizz - Your Online Store</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('image/bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #A99F96;
+        }
+
+        .navbar {
+            background-color: #080705;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .brand {
+            font-size: 24px;
+            color: #A99F96;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .nav-link {
+            margin-left: 20px;
+            color: #A99F96;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #080705;
+        }
+
+        .auth-buttons a {
+            margin-left: 10px;
+            color: #A99F96;
+            text-decoration: none;
+            border: 1px solid #A99F96;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .auth-buttons a:hover {
+            background-color: #A99F96;
+            color: #080705;
+        }
+
+        .content {
+            padding: 20px;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">EBizz</div>
+        <div class="container">
+            <a href="/show_tables" class="nav-link">Show Tables</a>
+            <a href="/products" class="nav-link">Products</a>
+            <a href="/categories" class="nav-link">Categories</a>
+            <a href="/sellers" class="nav-link">Sellers</a>
+            <a href="/support_customer" class="nav-link">Support Customer</a>
+            <a href="/review" class="nav-link">Review</a>
+            <!-- Login and Signup buttons -->
+            <div class="auth-buttons">
+                <a href="/login" class="nav-link">Log In</a>
+                <a href="/signup" class="nav-link">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+    <div class="content">
+        <h1>Welcome to EBizz - Your Personal Online Store</h1>
+        <div class="search-container">
+            <form action="/search_products" method="GET">
+                <input type="text" name="search_query" class="search-input" placeholder="Search Product Name" required>
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>
+
+        {% if search_query %}
+        <div class="search-results">
+            <h2>Search Results for "{{ search_query }}"</h2>
+            <div class="products">
+                {% for product in products %}
+                <div class="product">
+                    <h3>{{ product.name }}</h3>
+                    <p>Description: {{ product.description }}</p>
+                    <p>Price: ${{ product.price }}</p>
+                    <p>Category ID: {{ product.category_id }}</p>
+                    <p>Seller ID: {{ product.seller_id }}</p>
+                    <p>Stock Quantity: {{ product.stock_quantity }}</p>
+                    <p>Is Featured: {{ product.is_featured }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

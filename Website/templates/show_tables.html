@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Tables - EBizz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #A99F96;
+            color: #080705;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #080705;
+            color: #A99F96;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Show Tables</h1>
+        <table>
+            <tr>
+                <th>Table Name</th>
+                <th>Column Names</th>
+                <th>Action</th>
+            </tr>
+            {% for table_name, column_names in tables %}
+            <tr>
+                <td>{{ table_name }}</td>
+                <td>{{ column_names }}</td>
+                <td><a href="/show_data/{{ table_name }}" class="btn">Show Data</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <a href="/" class="btn">Return to Home Screen</a>
+    </div>
+</body>
+</html>

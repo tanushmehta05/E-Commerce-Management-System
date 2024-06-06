@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page - EBizz</title>
+    <style>
+        body {
+            background-color: #080705;
+            color: #A99F96;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #080705;
+            color: #A99F96;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .input-field {
+            margin-bottom: 15px;
+            padding: 8px;
+            width: 300px;
+            border: 1px solid #A99F96;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .login-button,
+        .signup-button,
+        .back-button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: #A99F96;
+            color: #080705;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            text-decoration: none;
+            display: inline-block; /* Added to make buttons display inline */
+        }
+
+        .login-button:hover,
+        .signup-button:hover,
+        .back-button:hover {
+            background-color: #A99F96;
+            color: #080705;
+        }
+
+        .button-container {
+            margin-top: 15px;
+        }
+
+        /* Additional styles */
+        .button-container a {
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login to Your Account</h2>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+        <form action="/login" method="POST">
+            <input type="email" name="email" placeholder="Enter your email" required><br>
+            <input type="password" name="password" placeholder="Enter your password" required><br>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+        <div class="button-container">
+            <a href="/signup" class="signup-button">Sign Up</a>
+            <a href="/" class="back-button">Return to Home Page</a>
+        </div>
+    </div>
+</body>
+</html>
